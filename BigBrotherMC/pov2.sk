@@ -1,0 +1,206 @@
+# ---- Scripts for the second power of veto competition competition ---- #
+command /pov2:
+	description: Start the second POV competition.
+	usage: /pov2
+	permission: bigbrother.competitionstart
+	trigger:
+		# Initial start, get everyone to the backyard!
+		set {pov.2} to true
+		broadcast "&8[&d+&8]&3 Attention house guests! &7Please head to the &abackyard&7 for the second POV competition!"
+		wait 10 irl seconds
+
+		# Brief introduction
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 It's time to get swinging, so let's begin the first POV competition of the summer!"
+		wait 5 irl seconds
+
+		# Get everyone into a colored room
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 I need everyone to stand on an iron trap door, one person per trap door. You have 15 seconds, starting now."
+		wait 15 irl seconds
+		make player execute command "/rg select pov1_loading"
+		make player execute command "//replace 167 0"
+		wait 3 irl seconds
+		make player execute command "//replace 0 126:11"
+		make player execute command "/rg select pov1_before_closed"
+		make player execute command "//set 0"
+		broadcast "&8[&d+&8]&7 Thank you, the color of room you are now in will be your hut for the remainder of the competition!"
+		loop all players:
+			if "%region at loop-player%" contains "pov1_yellow":
+				set {pov1_yellow.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_magenta":
+				set {pov1_magenta.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_orange":
+				set {pov1_orange.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_red":
+				set {pov1_red.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_cyan":
+				set {pov1_cyan.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_lime":
+				set {pov1_lime.%player%} to true
+				stop
+
+		# Explain the competition		
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 On my go you will run across the parkour, walk the plank, and then shoot your grappling gun at the jungle wall."
+		broadcast "&8[&d+&8]&7 You will then climb up the jungle wall and jump down the other side where there are a number of chests."
+		broadcast "&8[&d+&8]&7 It is your job to open a chest and get its contents before you fall down."
+		broadcast "&8[&d+&8]&7 What are you looking for? Your goal is to match the pattern that you see under your plank."
+		broadcast "&8[&d+&8]&7 For each correct match, you will get a point."
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 The player who gets the most matches, in the least amount of time wins the Power of Veto!"
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 You are only allowed to grapple when you are on your plank, or behind the red line attempting to grapple onto your gold block."
+		broadcast "&8[&d+&8]&7 If you fall off your plank, you will be sent back to the start and your inventory will be cleared!"
+		broadcast "&8[&d+&8]&7 If you fall into the water during the parkour, hit the buttons to return to your start. There is a chance that your button is a dud, so keep hitting buttons until you get back!"
+
+
+		# Understand? Then go.
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Does everyone understand?"
+
+		wait 5 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 That's great, because the competition begins &3now&7."
+		loop all players:
+			loop-player does not have permission "bb.admin"
+			execute console command "gms %loop-player%"
+		make player execute command "/rg select pov1_waiting"
+		make player execute command "//set 0"
+		set {pov.1.start} to true
+		set {pov1.competitiontimer} to now
+
+
+command /pov2results:
+	description: Sends the POV results to the admin who ran the comp.
+	usage: /pov1results
+	permission: bb.admin
+	trigger:
+		# So you know which order to deliver results.
+		loop all players:
+			set {pov1_score.%player%} to difference between {pov1.competitiontimer} and now
+			loop-player does not have permission "bb.admin"
+			send "&b%loop-player%&8:&6 %{pov1_score.%loop-player%}%" to command sender
+
+		# Set all the huts to air so that we can see boards.
+		make player execute command "/rg select pov1_yellow"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_magenta"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_orange"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_red"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_cyan"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_lime"
+		make player execute command "//set 0"
+		broadcast "&8[&d+&8]&7 It's time to compare the results!"
+
+
+command /pov2end <text>:
+	description: Formally ends the HOH competition and declares the winner.
+	usage: /pov2end [Username]
+	permission: bb.admin
+	trigger:
+
+		# [Username] is the veto holder for the week, end of POV competition!
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Alright houseguests, &3I have tallied the scores&7."
+		broadcast "&8[&d+&8]&7 Congratulations &a%arg 1%&7, you have won the power of veto this week!"
+		broadcast "&8[&d+&8]&7 Good night, houseguests."
+		set {pov.2} to false
+		stop
+
+on right click holding slimeball:
+	if the 1st line of the item's lore is "a":
+		set the name of the item to "a" 
+
+command /giveslime <text>:
+	trigger:
+		set {_lore} to a random number between 1 and 1000000
+		execute console command "/give %command sender% slimeball 1 name:%arg 1% lore:&0%{_lore}%"
+
+on drop of slimeball:
+	set {_sball} to the entity's location
+	loop 50 times:
+		teleport the dropped item to {_sball}
+		broadcast "d"
+
+command /spawnbat:
+	trigger:
+		spawn a bat riding a cow
+on enter of region "glassdoor":
+	if {pov.2} is true:
+		if {pov.2.%player%} is true:
+			if {players_entered} is equal to 1:
+				add 1 to {players_entered}
+				set {pov.2.color.%player%} to "orange"
+				execute console command "warp pov2_player_waiting %player%"
+				send "&7You color is &6orange&7."
+				execute console command "gma %player%"
+				stop
+			if {players_entered} is equal to 2:
+				add 1 to {players_entered}
+				set {pov.2.color.%player%} to "yellow"
+				execute console command "warp pov2_player_waiting %player%"
+				send "&7You color is &eyellow&7."
+				execute console command "gma %player%"
+				stop
+			if {players_entered} is equal to 3:
+				add 1 to {players_entered}
+				set {pov.2.color.%player%} to "lime"
+				execute console command "warp pov2_player_waiting %player%"
+				send "&7You color is &alime&7."
+				execute console command "gma %player%"
+				stop
+			if {players_entered} is equal to 4:
+				add 1 to {players_entered}
+				set {pov.2.color.%player%} to "purple"
+				execute console command "warp pov2_player_waiting %player%"
+				send "&7You color is &5purple&7."
+				execute console command "gma %player%"
+				stop
+			if {players_entered} is equal to 5:
+				add 1 to {players_entered}
+				set {pov.2.color.%player%} to "red"
+				execute console command "warp pov2_player_waiting %player%"
+				send "&7You color is &cred&7."
+				execute console command "gma %player%"
+				stop
+			if {players_entered} is equal to 6:
+				add 1 to {players_entered}
+				set {pov.2.color.%player%} to "black"
+				execute console command "warp pov2_player_waiting %player%"
+				send "&7You color is &0black&7."
+				execute console command "gma %player%"
+				stop
+		else:
+			execute console command "warp pov2 %player%"
+
+
+command /pov2player <text>:
+	trigger:
+		set {pov.2.%arg 1%} to true
+
+
+command /pov2state <text>:
+	trigger:
+		if arg 1 is "t":
+			set {pov.2} to true
+			send "&b{pov.2}&8:&6 true" to player
+			stop
+		if arg 1 is "f":
+			set {pov.2} to false
+			send "&b{pov.2}&8:&6 false" to player
+			stop

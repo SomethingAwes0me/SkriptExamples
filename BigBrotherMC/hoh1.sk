@@ -1,0 +1,426 @@
+# SHEEP_HOH ---- Scripts for the first head of household competition ---- #
+command /hoh1:
+	description: Start the first HOH competition.
+	usage: /hoh1
+	permission: bigbrother.competitionstart
+	trigger:
+		# Initial start, get everyone to the backyard!
+		make player execute command "/hoh1sheepspawn"
+		wait 60 seconds
+
+		set {players_entered} to 1
+		set {hoh.1} to true
+		broadcast "&8[&d+&8]&3 Attention house guests! &7Please head to the &abackyard&7 for the first HOH competition!"
+		wait 10 irl seconds
+
+		# Brief introduction
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Howdy farmers! It seems your sheep have gotten lost all over the field, oh no!"
+		wait 5 irl seconds
+
+		# Get everyone into a colored room
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Everyone should be standing on a post near a colored area, if not please say something!"
+		broadcast "&8[&d+&8]&7 This is your color for the competition!"
+
+
+		# Explain the competition		
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Here's how this competition works."
+		broadcast "&8[&d+&8]&7 On my go, you will have &32 minutes&7 to get as many sheep into your colored box (they have to be on the ground of the box) as possible."
+		broadcast "&8[&d+&8]&7 You will get &a1 point for every sheep&7, unless the sheep is your color in which case you will get &a3 points&7."
+		broadcast "&8[&d+&8]&7 After &32 minutes&7 the floor will close and all your sheep will drop down where they will be counted."
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 The &c4 players with the lowest&7 point totals will be eliminated. "
+		broadcast "&8[&d+&8]&7 The player with the highest point total will receive a bonus of &610 points&7 in the next round."
+		broadcast "&8[&d+&8]&7 The player with the most sheep in his or her pen, regardless of color, will receive a bonus of &65 points&7 in the next round."
+		
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 We will then have three more rounds (with 12 people, then 8, then 4) all with the same rules."
+		broadcast "&8[&d+&8]&7 In the final round, the player with the highest number of points will win and become the HOH!"
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 You cannot take sheep from other people's pens."
+		broadcast "&8[&d+&8]&7 If you fall off your pedestal you are ineligible to compete any longer in that round. Should you make it to the next round you will be reset on your pedestal."
+		broadcast "&8[&d+&8]&7 If you drop your fishing rod you are ineligible to compete any longer in that round. Should you make it to the next round you will be given an alternate fishing rod."
+		broadcast "&8[&d+&8]&7 You cannot use your fishing rod on other players, only on mobs in the forest area."
+
+
+
+		# Understand? Then go.
+		wait 15 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Does everyone understand?"
+
+		wait 5 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 That's great, because the competition begins &3now&7."
+		make player execute command "/rg select hoh1_waiting1"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh1_waiting2"
+		make player execute command "//set 0"
+		make player execute command "/hoh1timer"
+
+
+command /hoh1timer:
+	description: Counts down from 60 and does some stuff with the sheep pen.
+	usage: /hoh1timer
+	permission: bb.admin
+	trigger:
+		make player execute command "/rg select hoh1_white"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_orange"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_magenta"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_lightblue"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_yellow"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_lime"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_pink"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_gray"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_silver"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_cyan"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_purple"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_blue"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_brown"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_green"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_red"
+		make player execute command "//replace 95 0"
+		make player execute command "/rg select hoh1_black"
+		make player execute command "//replace 95 0"
+		
+		wait 120 seconds
+		broadcast "&8[&d+&8]&7 Time's up! Time to count sheep!"
+		
+		make player execute command "/rg select hoh1_white"
+		make player execute command "//replace 0 95:0"
+		make player execute command "/rg select hoh1_orange"
+		make player execute command "//replace 0 95:1"
+		make player execute command "/rg select hoh1_magenta"
+		make player execute command "//replace 0 95:2"
+		make player execute command "/rg select hoh1_lightblue"
+		make player execute command "//replace 0 95:3"
+		make player execute command "/rg select hoh1_yellow"
+		make player execute command "//replace 0 95:4"
+		make player execute command "/rg select hoh1_lime"
+		make player execute command "//replace 0 95:5"
+		make player execute command "/rg select hoh1_pink"
+		make player execute command "//replace 0 95:6"
+		make player execute command "/rg select hoh1_gray"
+		make player execute command "//replace 0 95:7"
+		make player execute command "/rg select hoh1_silver"
+		make player execute command "//replace 0 95:8"
+		make player execute command "/rg select hoh1_cyan"
+		make player execute command "//replace 0 95:9"
+		make player execute command "/rg select hoh1_purple"
+		make player execute command "//replace 0 95:10"
+		make player execute command "/rg select hoh1_blue"
+		make player execute command "//replace 0 95:11"
+		make player execute command "/rg select hoh1_brown"
+		make player execute command "//replace 0 95:12"
+		make player execute command "/rg select hoh1_green"
+		make player execute command "//replace 0 95:13"
+		make player execute command "/rg select hoh1_red"
+		make player execute command "//replace 0 95:14"
+		make player execute command "/rg select hoh1_black"
+		make player execute command "//replace 0 95:15"
+		
+		make player execute command "/rg select hoh1_wooldrop1"
+		make player execute command "//replace 35 0"
+		wait 3 irl seconds
+		make player execute command "//undo"
+		make player execute command "/rg select hoh1_wooldrop2"
+		make player execute command "//replace 35 0"
+		wait 3 irl seconds
+		make player execute command "//undo"
+		
+
+command /hoh1end <text>:
+	description: Formally ends the HOH competition and declares the winner.
+	usage: /hoh1end [Username]
+	permission: bb.admin
+	trigger:
+
+		# [Username] is the veto holder for the week, end of POV competition!
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Alright houseguests, &3I have tallied the scores&7."
+		broadcast "&8[&d+&8]&7 Congratulations &a%arg 1%&7, you are the HOH this week!"
+		broadcast "&8[&d+&8]&7 Good night, houseguests."
+		set {hoh.1} to false
+		stop
+
+
+command /hoh1sheepspawn:
+	description: Formally ends the HOH competition and declares the winner.
+	usage: /pov2spawn
+	permission: bb.admin
+	trigger:
+		make player execute command "/tppos 235 22 -118 357.934 19.65"
+		make player execute command "/spawnmob horse 5"
+		make player execute command "/spawnmob pig 5"
+		make player execute command "/spawnmob chicken 5"
+		make player execute command "/spawnmob ocelot 5"
+		make player execute command "/spawnmob cow 5"
+		make player execute command "/spawnmob sheep:white 7"
+		make player execute command "/spawnmob sheep:orange 7"
+		make player execute command "/spawnmob sheep:magenta 7"
+		make player execute command "/spawnmob sheep:light_blue 7"
+		make player execute command "/spawnmob sheep:yellow 7"
+		make player execute command "/spawnmob sheep:lime 7"
+		make player execute command "/spawnmob sheep:pink 7"
+		make player execute command "/spawnmob sheep:gray 7"
+		make player execute command "/spawnmob sheep:silver 7"
+		make player execute command "/spawnmob sheep:cyan 7"
+		make player execute command "/spawnmob sheep:purple 7"
+		make player execute command "/spawnmob sheep:blue 7"
+		make player execute command "/spawnmob sheep:brown 7"
+		make player execute command "/spawnmob sheep:green 7"
+		make player execute command "/spawnmob sheep:red 7"
+		make player execute command "/spawnmob sheep:black 7"
+		send "&8[&a✓&8]&e Done (1/5)!" to command sender
+		wait 2 irl seconds
+		
+		make player execute command "/tppos 212 25 -127 123.784 21.3"
+		make player execute command "/spawnmob horse 5"
+		make player execute command "/spawnmob pig 5"
+		make player execute command "/spawnmob chicken 5"
+		make player execute command "/spawnmob ocelot 5"
+		make player execute command "/spawnmob cow 5"
+		make player execute command "/spawnmob sheep:white 7"
+		make player execute command "/spawnmob sheep:orange 7"
+		make player execute command "/spawnmob sheep:magenta 7"
+		make player execute command "/spawnmob sheep:light_blue 7"
+		make player execute command "/spawnmob sheep:yellow 7"
+		make player execute command "/spawnmob sheep:lime 7"
+		make player execute command "/spawnmob sheep:pink 7"
+		make player execute command "/spawnmob sheep:gray 7"
+		make player execute command "/spawnmob sheep:silver 7"
+		make player execute command "/spawnmob sheep:cyan 7"
+		make player execute command "/spawnmob sheep:purple 7"
+		make player execute command "/spawnmob sheep:blue 7"
+		make player execute command "/spawnmob sheep:brown 7"
+		make player execute command "/spawnmob sheep:green 7"
+		make player execute command "/spawnmob sheep:red 7"
+		make player execute command "/spawnmob sheep:black 7"
+		send "&8[&a✓&8]&e Done (2/5)!" to command sender
+		wait 2 irl seconds
+		
+		make player execute command "/tppos 192 22 -118 52.534 20.25"
+		make player execute command "/spawnmob horse 5"
+		make player execute command "/spawnmob pig 5"
+		make player execute command "/spawnmob chicken 5"
+		make player execute command "/spawnmob ocelot 5"
+		make player execute command "/spawnmob cow 5"
+		make player execute command "/spawnmob sheep:white 6"
+		make player execute command "/spawnmob sheep:orange 6"
+		make player execute command "/spawnmob sheep:magenta 6"
+		make player execute command "/spawnmob sheep:light_blue 6"
+		make player execute command "/spawnmob sheep:yellow 6"
+		make player execute command "/spawnmob sheep:lime 6"
+		make player execute command "/spawnmob sheep:pink 6"
+		make player execute command "/spawnmob sheep:gray 6"
+		make player execute command "/spawnmob sheep:silver 6"
+		make player execute command "/spawnmob sheep:cyan 6"
+		make player execute command "/spawnmob sheep:purple 6"
+		make player execute command "/spawnmob sheep:blue 6"
+		make player execute command "/spawnmob sheep:brown 6"
+		make player execute command "/spawnmob sheep:green 6"
+		make player execute command "/spawnmob sheep:red 6"
+		make player execute command "/spawnmob sheep:black 6"
+		send "&8[&a✓&8]&e Done (3/5)!" to command sender
+		wait 2 irl seconds
+		
+		make player execute command "/tppos 207 22 -118 36.034 38.25"
+		make player execute command "/spawnmob horse 5"
+		make player execute command "/spawnmob pig 5"
+		make player execute command "/spawnmob chicken 5"
+		make player execute command "/spawnmob ocelot 5"
+		make player execute command "/spawnmob cow 5"
+		make player execute command "/spawnmob sheep:white 6"
+		make player execute command "/spawnmob sheep:orange 6"
+		make player execute command "/spawnmob sheep:magenta 6"
+		make player execute command "/spawnmob sheep:light_blue 6"
+		make player execute command "/spawnmob sheep:yellow 6"
+		make player execute command "/spawnmob sheep:lime 6"
+		make player execute command "/spawnmob sheep:pink 6"
+		make player execute command "/spawnmob sheep:gray 6"
+		make player execute command "/spawnmob sheep:silver 6"
+		make player execute command "/spawnmob sheep:cyan 6"
+		make player execute command "/spawnmob sheep:purple 6"
+		make player execute command "/spawnmob sheep:blue 6"
+		make player execute command "/spawnmob sheep:brown 6"
+		make player execute command "/spawnmob sheep:green 6"
+		make player execute command "/spawnmob sheep:red 6"
+		make player execute command "/spawnmob sheep:black 6"
+		send "&8[&a✓&8]&e Done (4/5)!" to command sender
+		wait 2 irl seconds
+
+		make player execute command "/tppos 218 22 -135 198.784 36.3"
+		make player execute command "/spawnmob horse 5"
+		make player execute command "/spawnmob pig 5"
+		make player execute command "/spawnmob chicken 5"
+		make player execute command "/spawnmob ocelot 5"
+		make player execute command "/spawnmob cow 5"
+		make player execute command "/spawnmob sheep:white 6"
+		make player execute command "/spawnmob sheep:orange 6"
+		make player execute command "/spawnmob sheep:magenta 6"
+		make player execute command "/spawnmob sheep:light_blue 6"
+		make player execute command "/spawnmob sheep:yellow 6"
+		make player execute command "/spawnmob sheep:lime 6"
+		make player execute command "/spawnmob sheep:pink 6"
+		make player execute command "/spawnmob sheep:gray 6"
+		make player execute command "/spawnmob sheep:silver 6"
+		make player execute command "/spawnmob sheep:cyan 6"
+		make player execute command "/spawnmob sheep:purple 6"
+		make player execute command "/spawnmob sheep:blue 6"
+		make player execute command "/spawnmob sheep:brown 6"
+		make player execute command "/spawnmob sheep:green 6"
+		make player execute command "/spawnmob sheep:red 6"
+		make player execute command "/spawnmob sheep:black 6"
+		send "&8[&a✓&8]&e Done (5/5)!" to command sender
+		wait 2 irl seconds
+
+
+on enter of region "glassdoor":
+	if {hoh.1} is true:
+		if {players_entered} is equal to 1:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_white %player%"
+			send "&7You are on the &fwhite&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 2:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_orange %player%"
+			send "&7You are on the &6orange&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 3:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_magenta %player%"
+			send "&7You are on the &dmagenta&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 4:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_lightblue %player%"
+			send "&7You are on the &blight blue&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 5:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_yellow %player%"
+			send "&7You are on the &eyellow&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 6:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_lime %player%"
+			send "&7You are on the &alime&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 7:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_pink %player%"
+			send "&7You are on the &dpink&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 8:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_gray %player%"
+			send "&7You are on the &8gray&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 9:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_silver %player%"
+			send "&7You are on the silver team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 10:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_cyan %player%"
+			send "&7You are on the &3cyan&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 11:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_purple %player%"
+			send "&7You are on the &5purple&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 12:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_blue %player%"
+			send "&7You are on the &1blue&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 13:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_brown %player%"
+			send "&7You are on the &6brown&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 14:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_green %player%"
+			send "&7You are on the &2green&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 15:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_red %player%"
+			send "&7You are on the &4red&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 16:
+			add 1 to {players_entered}
+			execute console command "warp hoh1_black %player%"
+			send "&7You are on the &0black&7 team."
+			execute console command "give %player% fishingrod 1 unbreaking:100"
+			execute console command "gma %player%"
+			stop
+
+
+command /hoh1state <text>:
+	trigger:
+		if arg 1 is "t":
+			set {hoh.1} to true
+			set {hoh.1.loop} to true
+			send "&b{hoh.1}&8:&6 true" to player
+			stop
+		if arg 1 is "f":
+			set {hoh.1} to false
+			set {hoh.1.loop} to false			
+			send "&b{hoh.1}&8:&6 false" to player
+			stop

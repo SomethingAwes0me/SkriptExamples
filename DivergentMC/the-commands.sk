@@ -1,0 +1,161 @@
+#
+# This file should only contain commands that relate to missions (regardless of factions).
+#
+
+# Progress command --> Let's a player check how far they are in a certain mission.
+command /progress:
+	description: Check how far along you are in a certain mission.
+	usage: /progress
+	executable by: players
+	trigger:
+		# Dauntless /progress things.
+		if {dauntless.%player%} is true:
+			if {dareward3.%player%} is true:
+				send "&8[&5Progress&8]&a +1&3 for every zombie hit &7| &c10%% chance of -3&3 for ever sheep hit"
+				send "&8[&5Progress&8]&3 &a%{daq3.%player%}%&7/&3150" to player
+				stop
+		send "&8[&5Progress&8]&3 You're not in any missions where you can check your progress!" to player
+
+# ---- NEXT COMMAND ---- #
+
+# Coin give command --> Adds coins to a players' balance.
+command /cg <player> <integer>:
+	description: Give players coins (essentials money).
+	usage: /cg [player] [coins]
+	permission: divergent.admin
+	executable by: players and console
+	trigger:
+		execute console command "eco give %arg 1% %arg 2%"
+		chance of 10%:
+			send "&8[&6+&8]&3 Awesome job! &a+%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&6+&8]&3 You earned this! &a+%arg 2% coins" to player arg
+			stop
+		chance of 30%:
+			send "&8[&6+&8]&3 Whoa man, nice! &a+%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&6+&8]&3 Oh yea that's the spot! &a+%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&6+&8]&3 You're the best I've ever seen! &a+%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&6+&8]&3 Sweet hombre! &a+%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&6+&8]&3 Classy man! &a+%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&6+&8]&3 That's mad rad dude! &a+%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&6+&8]&3 Cha-ching! &a+%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&6+&8]&3 Wheat, wheat wheat, gotta get dat wheat! &a+%arg 2% coins" to player arg
+			stop
+		send "&8[&6+&8]&3 Okay, I'm impressed! &a+%arg 2% coins" to player arg
+
+# ---- NEXT COMMAND ---- #
+
+# Coin take command --> Removes coins from a players' balance.
+command /ct <player> <integer>:
+	description: Take a players' coins (essentials money).
+	usage: /ct [player] [coins]
+	permission: divergent.admin
+	executable by: players and console
+	trigger:
+		execute console command "eco take %arg 1% %arg 2%"
+		chance of 10%:
+			send "&8[&4-&8]&3 Bad man! &c-%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&4-&8]&3 I can't take this! &c-%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&4-&8]&3 Please don't! &c-%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&4-&8]&3 SHAME! &c-%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&4-&8]&3 That's, unique.. in a bad way! &c-%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&4-&8]&3 Watch where you're going! &c-%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&4-&8]&3 That's not the objective! &c-%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&4-&8]&3 Avoid the innocents at all costs! &c-%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&4-&8]&3 Let's not do that.. &c-%arg 2% coins" to player arg
+			stop
+		chance of 10%:
+			send "&8[&4-&8]&3 Wheat, wheat wheat, gotta get dat wheat! &c-%arg 2% coins" to player arg
+			stop
+		send "&8[&4-&8]&3 Okay, I'm disgusted! &c-%arg 2% coins" to player arg
+
+# ---- NEXT COMMAND ---- #
+
+# Mission completion command --> Use this command to give coins at the end of missions, because it sends a special message.
+command /mc <player> <integer>:
+	description: Give players coins (essentials money) for mission completions.
+	usage: /mc [player] [coins]
+	permission: divergent.admin
+	executable by: players and console
+	trigger:
+		execute console command "eco give %arg 1% %arg 2%"
+		send "&8[&d+&8]&b&k ||| &2Mission Completed &b&k||| &6+%arg 2% coins" to player arg
+
+# ---- NEXT COMMAND ---- #
+
+# Mission command --> Players can use this command to get information about their next mission, very important stuff!
+# Note: Use &3 for main mission text, use &a for important information.
+# General format: "send &8[&6Mission&8]&3 MissionTextGoesHere." to player
+command /mission:
+	description: Progress through the various parts of DivergentMC.
+	usage: /mission
+	executable by: players
+	trigger:
+		if {dauntless.%player%} is true:
+			if {dareward1.%player%} is true:
+				send "&8[&6Mission&7:&e1&8] &3Head to &aDauntless HQ &3and go to the top floor, then go through the hole and &aget on the roof&3. Once you get there jump off the &awest&3 side of the building and parkour up to the roof, then we'll hook you up with a gun." to player
+				stop
+			if {dareward2.%player%} is true:
+				send "&8[&6Mission&7:&e1&8] &3Go back to &aDauntless HQ&3 and find &aFour&3, he can get you a gun." to player
+				stop
+			if {dareward3.%player%} is true:
+				send "&8[&6Mission&7:&e1&8] &3Go to the &asixth floor&3 of Dauntless HQ and talk to &aFour&3 for some training." to player
+				stop
+			if {dareward4.%player%} is true:
+				send "&8[&6Mission&7:&e1&8] &3Go to the Abnegation HQ and get a &acity map&3." to player
+				stop
+			if {dareward5.%player%} is true:
+				send "&8[&6Mission&7:&e1&8] &3Head to the library and speak the &athe librarian&3." to player
+				stop
+		send "&8[&6Mission&8] &3Internal error, please contact an Admin." to player
+
+# ---- NEXT COMMAND ---- #
+
+# Checkpoint command --> Use this command if a mission is long and you want a player to be able to save their progress part-way through.
+# Useful for when a quest is long/difficult/repetitive/someone can die and you don't want someone to get too angry.
+# Also helpful to make sure to set a radius so that they can't use it to teleport around!
+command /checkpoint:
+	description: Return to a checkpoint.
+	usage: /checkpoint
+	executable by: players
+	trigger:
+		{daq1.%player%} is true:
+			distance between the player and the location (-49, 111, -149) is less than 100:
+				teleport player to {da1.%player%}
+				send "&8[&6Mission&8] &3Let's try not to fall this time." to player
+				stop
+			send "&8[&6Mission&8] &3You need to be closer to the building to return to your checkpoint!"
+			stop
+		send "&8[&6Mission&8]&3 It doesn't look like you're in the middle of any missions!"
+

@@ -1,0 +1,49 @@
+#
+# This file should mostly contain stuff that applies to the world "green" (aka main world), but it's also for more general things too.
+#
+
+# Dauntless HQ Elevator --> Makes it possible for people to get through the elevator..
+on enter of region "DAelevator":
+	apply potion of jump boost of tier 8 to player for 30 seconds
+on exit of region "DAelevator":
+	remove jump boost from player
+
+# ---- NEXT THING ---- #
+
+# Disable villagers in the Green world.
+on rightclick on villager:
+	world is "green"
+	cancel the event
+	send "<red>You cannot interact with villagers while in the city." to player
+on damage of villager:
+	world is "green"
+	cancel the event
+	send "<red>You cannot attack villagers while in the city." to attacker
+
+# ---- NEXT THING ---- #
+
+# Make it so that players cannot attack zombies/sheep with the listed names. Can add whatever names are needed!
+on damage of zombie or sheep:
+	victim's display name is "&4&lEnemy" or "&2&a&a" or "&e&lInnocent"
+	cancel the event
+
+# ---- NEXT THING ---- #
+
+# Make it so that specific mobs can't movie.
+on spawn of zombie or sheep:
+	world is "green"
+	spawned zombie or sheep's display name is "&4&lEnemy" or "&f&r" or "&e&lInnocent":
+		apply potion of slowness of tier 127 to the zombie or sheep for 999 days
+		apply potion of jump boost of tier 129 to the zombie or sheep for 999 days
+		stop
+
+# ---- NEXT THING ---- #
+on shoot:
+	world is "green"
+	shooter does not have permission "divergent.admin"
+	projectile is snowball
+	shooter is a player
+	cancel the event
+	send "&4Snowballs aren't enabled in this world, use your gun!" to shooter
+	wait 0.1 seconds
+	execute console command "minecraft:clear %shooter% minecraft:snowball"

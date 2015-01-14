@@ -1,0 +1,33 @@
+# ---- VARIOUS THINGS FOR DEBUGGING ---- #
+command /updatemission:
+	description: Set something to true.
+	usage: /updatemission
+	permission: divergent.admin
+	executable by: players
+	trigger:
+		set {dareward5.%player%} to true
+		set {daq5.%player%} to true
+		send "&2Updated." to player
+
+command /namedmob:
+	description: Spawn mobs with names.
+	usage: /nambedmob
+	executable by: players
+	trigger:
+		spawn a zombie at the player's location
+		set spawned zombie's display name to "&4&lEnemy"
+
+
+# ---- Custom Join and Leave messages ---- #
+on join:
+	set join message to ""
+	stop
+on quit:
+	set leave message to ""
+	stop
+on join:
+	player has permission "join.admin":
+		stop
+	player has permission "join.mod":
+		broadcast "&8[&2+&8] &d%player% &7has joined."
+		stop

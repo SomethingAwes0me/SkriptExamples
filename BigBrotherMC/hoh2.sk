@@ -1,0 +1,1222 @@
+# MATCH_BUILD_HOH ---- Scripts for the second head of household competition ---- #
+on enter of region "glassdoor":
+	if {hoh.2} is true:
+		if {players_entered} is equal to 1:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "white"
+			execute console command "warp hoh2_white %player%"
+			send "&7You are in the &fwhite &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 2:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "orange"
+			execute console command "warp hoh2_orange %player%"
+			send "&7You are in the &6orange &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 3:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "lightblue"
+			execute console command "warp hoh2_lightblue %player%"
+			send "&7You are in the &blight blue &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 4:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "yellow"
+			execute console command "warp hoh2_yellow %player%"
+			send "&7You are in the &eyellow &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 5:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "lime"
+			execute console command "warp hoh2_lime %player%"
+			send "&7You are in the &alime &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 6:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "pink"
+			execute console command "warp hoh2_pink %player%"
+			send "&7You are in the &dpink &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 7:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "gray"
+			execute console command "warp hoh2_gray %player%"
+			send "&7You are in the &8gray &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 8:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "magenta"
+			execute console command "warp hoh2_magenta %player%"
+			send "&7You are in the &dmagenta &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 9:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "cyan"
+			execute console command "warp hoh2_cyan %player%"
+			send "&7You are in the &3cyan &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 10:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "purple"
+			execute console command "warp hoh2_purple %player%"
+			send "&7You are in the &5purple &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 11:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "blue"
+			execute console command "warp hoh2_blue %player%"
+			send "&7You are in the &1blue &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 12:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "brown"
+			execute console command "warp hoh2_brown %player%"
+			send "&7You are in the &6brown &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 13:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "green"
+			execute console command "warp hoh2_green %player%"
+			send "&7You are in the &2green &7zone."
+			execute console command "gma %player%"
+			stop
+		if {players_entered} is equal to 14:
+			add 1 to {players_entered}
+			set {hoh.2.color.%player%} to "red"
+			execute console command "warp hoh2_red %player%"
+			send "&7You are in the &4red &7zone."
+			execute console command "gma %player%"
+			stop
+
+
+command /hoh2:
+	description: Start the second HOH competition.
+	usage: /hoh2
+	permission: bigbrother.competitionstart
+	trigger:
+		# Initial start, get everyone to the backyard!
+		set {hoh.2.notyet} to true
+		set {players_entered} to 1
+		set {hoh.2} to true
+		broadcast "&8[&d+&8]&3 Attention house guests! &7Please head to the &abackyard&7 for the second HOH competition!"
+		wait 10 irl seconds
+
+		# Brief introduction
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Hope you guys have brushed up on your art skills, because it's time to get building!"
+		wait 5 irl seconds
+
+		# Get everyone into a colored room
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Everyone should be in a colored zone, if not please say something!"
+		broadcast "&8[&d+&8]&7 This is your color for the competition!"
+
+
+		# Explain the competition		
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Here's how this competition works."
+		broadcast "&8[&d+&8]&7 On my go, a &3new painting&7 will appear in the six gold master art zones."
+		broadcast "&8[&d+&8]&7 It is then your job to &3replicate the painting exactly &7in your zones."
+		broadcast "&8[&d+&8]&7 The &bdiamond corner&7 of the gold zone should line up with the diamond corner in your zone. Same with the &aemerald corner&7."
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Once you think you have your painting correct, &3punch the sheep&7 in your zone to lock in. "
+		broadcast "&8[&d+&8]&7 If you got it &3all correct&7, then your time and painting will be locked in!"
+		broadcast "&8[&d+&8]&7 If &3even one block is off &7you will not be able to lock in your build and you will have to fix the errors!"
+		
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 The last house guest to lock in his or her painting will be eliminated."
+		broadcast "&8[&d+&8]&7 This will continue until only &3one player&7 remains!"
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Looking at other people's paintings is not permitted."
+		broadcast "&8[&d+&8]&7 You are not allowed to stand on the coal blocks, only in your area and on your colored wool."
+
+		# Understand? Then go.
+		wait 15 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Does everyone understand?"
+
+		wait 5 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 That's great, because the competition begins &3now&7."
+		make player execute command "/hoh2boards 1"
+		loop all players:
+			make player execute command "/gms %loop-player%"
+		set {hoh.2.notyet} to false
+
+
+command /hoh2progress:
+	description: Check the progress of the competition.
+	usage: /hoh2progress
+	permission: bb.admin
+	trigger:
+		send "&8[&6+&8]&c %{hoh2.lockedin}% &7house guests have locked in." to command sender
+
+
+command /hoh2boards <integer>:
+	description: Sets up each round of the HOH competition.
+	usage: /hoh2boards [1 - 13]
+	permission: bb.admin
+	trigger:
+		set {hoh2.lockedin} to 0
+		set {hoh2.competitiontimer} to now
+		make player execute command "/rg select hoh2_build_white"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_orange"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_lightblue"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_yellow"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_lime"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_pink"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_gray"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_magenta"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_cyan"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_purple"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_blue"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_brown"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_green"
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh2_build_red"
+		make player execute command "//set 0"
+
+		loop all players:
+			set {hoh2.locked.%loop-player%} to false
+
+		if arg 1 is equal to 1:
+			make player execute command "/tppos -622 12 -26"
+			make player execute command "/rg select hoh2_board1flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -622 12 -26"
+			make player execute command "/rg select hoh2_board1"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 2:
+			make player execute command "/tppos -613 12 -26"
+			make player execute command "/rg select hoh2_board2flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -613 12 -26"
+			make player execute command "/rg select hoh2_board2"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 3:
+			make player execute command "/tppos -604 12 -26"
+			make player execute command "/rg select hoh2_board3flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -604 12 -26"
+			make player execute command "/rg select hoh2_board3"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 4:
+			make player execute command "/tppos -595 12 -26"
+			make player execute command "/rg select hoh2_board4flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -595 12 -26"
+			make player execute command "/rg select hoh2_board4"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 5:
+			make player execute command "/tppos -586 12 -26"
+			make player execute command "/rg select hoh2_board5flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -586 12 -26"
+			make player execute command "/rg select hoh2_board5"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 6:
+			make player execute command "/tppos -577 12 -26"
+			make player execute command "/rg select hoh2_board6flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -577 12 -26"
+			make player execute command "/rg select hoh2_board6"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 7:
+			make player execute command "/tppos -568 12 -26"
+			make player execute command "/rg select hoh2_board7flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -568 12 -26"
+			make player execute command "/rg select hoh2_board7"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 8:
+			make player execute command "/tppos -559 12 -26"
+			make player execute command "/rg select hoh2_board8flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -559 12 -26"
+			make player execute command "/rg select hoh2_board8"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 9:
+			make player execute command "/tppos -550 12 -26"
+			make player execute command "/rg select hoh2_board9flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -550 12 -26"
+			make player execute command "/rg select hoh2_board9"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 10:
+			make player execute command "/tppos -541 12 -26"
+			make player execute command "/rg select hoh2_board10flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -541 12 -26"
+			make player execute command "/rg select hoh2_board10"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 11:
+			make player execute command "/tppos -532 12 -26"
+			make player execute command "/rg select hoh2_board11flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -532 12 -26"
+			make player execute command "/rg select hoh2_board11"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 12:
+			make player execute command "/tppos -523 12 -26"
+			make player execute command "/rg select hoh2_board12flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -523 12 -26"
+			make player execute command "/rg select hoh2_board12"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+		if arg 1 is equal to 13:
+			make player execute command "/tppos -514 12 -26"
+			make player execute command "/rg select hoh2_board13flat"
+			make player execute command "//copy"
+			make player execute command "/tppos -631 12 -26"
+			make player execute command "//paste"
+
+			make player execute command "/tppos -514 12 -26"
+			make player execute command "/rg select hoh2_board13"
+			make player execute command "//copy"
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (1/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (2/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 30 -20"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (3/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -650 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (4/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -667 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (5/6)!" to command sender
+			wait 1 irl seconds
+
+			make player execute command "/tppos -683 32 -4"
+			make player execute command "//paste"
+			send "&8[&a✓&8]&e Done (6/6)!" to command sender
+			stop
+
+
+command /hoh2scores:
+	permission: bb.admin
+	trigger:
+		loop all players:
+			send "&6%loop-player%&7: &b%{hoh2.time.%loop-player%}%" to command sender
+
+
+command /hoh2eliminated <text> <number>:
+	permission: bb.admin
+	trigger:
+		broadcast "&8[&d+&8]&7 Sorry &c%arg 1%&7, but you locked in last and have been eliminated!"
+		wait 2 seconds
+		make player execute command "/warp hoh2_losers %arg 1%"
+		wait 10 seconds
+		broadcast "&8[&6+&8]&7 Let's begin the next round!"
+		wait 5 seconds
+		make player execute command "/hoh2boards %arg 2%"
+
+
+command /hoh2end <text>:
+	description: Formally ends the HOH competition and declares the winner.
+	usage: /hoh2end [Username]
+	permission: bb.admin
+	trigger:
+
+		# [Username] is the HOH for the week, end of HOH competition!
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Alright houseguests, &3I have tallied the scores&7."
+		broadcast "&8[&d+&8]&7 Congratulations &a%arg 1%&7, you are the new head of household!"
+		broadcast "&8[&d+&8]&7 Good night, houseguests."
+		set {hoh.2} to false
+		stop
+
+
+command /getsheep:
+	trigger:
+		spawn a sheep at the player's location
+		apply potion of slowness of tier 127 to the spawned sheep for 999 days
+		set the display name of the spawned sheep to "&aLock In Build &7&o(Punch me!)"
+
+
+on break:
+	if {hoh.2.notyet} is true:
+		cancel the event
+		send "&8[&3+&8]&7 You cannot build your painting in yet!" to player
+		stop
+	if {hoh2.locked.%player%} is true:
+		cancel the event
+		send "&8[&4x&8]&c You have already locked in your build!" to player
+		stop
+
+
+on place:
+	if {hoh.2.notyet} is true:
+		cancel the event
+		send "&8[&3+&8]&7 You cannot build your painting in yet!" to player
+		stop
+	if {hoh2.locked.%player%} is true:
+		cancel the event
+		send "&8[&4x&8]&c You have already locked in your build!" to player
+		stop
+
+
+on damage of sheep:
+	if {hoh.2.notyet} is true:
+		cancel the event
+		send "&8[&3+&8]&7 You cannot lock your painting in yet!" to attacker
+		stop
+	if {hoh.2} is true:
+		cancel the event
+		if {hoh2.locked.%attacker%} is true:
+			send "&8[&3+&8]&7 Your painting has already been locked in!" to attacker
+			execute console command "/playsound random.orb %attacker%"
+			stop
+
+		if attacker is in region "hoh2_white":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_white":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_orange":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_orange":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_lightblue":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_lightblue":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_yellow":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_yellow":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_lime":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_lime":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_pink":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_pink":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_gray":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_gray":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_magenta":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_magenta":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_cyan":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_cyan":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_purple":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_purple":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop
+
+		if attacker is in region "hoh2_blue":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_blue":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop	
+
+		if attacker is in region "hoh2_brown":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_brown":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop		
+
+		if attacker is in region "hoh2_green":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_green":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop	
+
+		if attacker is in region "hoh2_red":
+			set {_count} to 0
+			loop all blocks in region "hoh2_master_region":
+				add 1 to {_count}
+				set {_blocks.masterRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			loop all blocks in region "hoh2_build_red":
+				add 1 to {_count}
+				set {_blocks.userRegion::%{_count}%} to loop-block
+			set {_count} to 0
+			set {_different.blocks} to 0
+			loop 49 times:
+				add 1 to {_count}
+				if "%{_blocks.masterRegion::%{_count}%}%" is not equal to "%{_blocks.userRegion::%{_count}%}%":
+					add 1 to {_different.blocks}
+			if {_different.blocks} is equal to 6:
+				send "&8[&3+&8]&6 Success! Your painting has been locked in!" to attacker
+				execute console command "/playsound random.orb %attacker%"
+				set {hoh2.time.%attacker%} to difference between {hoh2.competitiontimer} and now
+				set {hoh2.locked.%attacker%} to true
+				add 1 to {hoh2.lockedin}
+				stop
+			else:
+				send "&8[&3+&8]&c Sorry! Your painting is not correct!" to attacker
+				execute console command "/playsound random.break %attacker%"
+				stop					
+
+
+command /hoh2state <text>:
+	permission: bb.admin
+	trigger:
+		if arg 1 is "t":
+			set {hoh.2} to true
+			send "&b{hoh.2}&8:&6 true" to player
+			stop
+		if arg 1 is "f":
+			set {hoh.2} to false
+			send "&b{hoh.2}&8:&6 false" to player
+			stop

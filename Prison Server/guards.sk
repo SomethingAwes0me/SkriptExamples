@@ -1,0 +1,170 @@
+command /c <player> <text>:
+	permission: kdc.guard
+	trigger:
+		set {_timetodrop} to 5
+		set {contraband.%arg 1%} to true
+		set {droppedyet.%arg 1%} to false
+		if arg 2 is "b" or "bow":
+			set {_weapon} to "bow"
+		else if arg 2 is "l" or "lava":
+			set {_weapon} to "lava bucket"
+		else if arg 2 is "f" or "flint":
+			set {_weapon} to "flint and steel"
+		else if arg 2 is "p" or "potion":
+			set {_weapon} to "damage potion"
+		else if arg 2 is "s" or "sword":
+			set {_weapon} to "sword"
+		
+		send "&8[&9Contraband&8]&6 %command sender% is requesting your %{_weapon}%! &cPlease drop it, or risk being sent to solitary." to arg 1
+		wait 2 seconds
+		send "&8[&9C&8]&6 Requesting %{_weapon}%, please wait..." to executor
+
+		loop 5 times:
+			if {droppedyet.%arg 1%} is false:
+				if {_timetodrop} is greater than 1:
+					send "&8[&9C&8]&b You have %{_timetodrop}% seconds to surrender your %{_weapon}%." to arg 1
+				else:
+					send "&8[&9C&8]&b You have %{_timetodrop}% second to surrender your %{_weapon}%." to arg 1
+				wait 1 second
+				remove 1 from {_timetodrop}
+			else:
+				set {contraband.%arg 1%} to false
+				stop
+		if {_timetodrop} is 0:
+			send "&8[&9Contraband&8] &6%arg 1% &7failed to surrender their %{_weapon}% in time!"
+			set {contraband.%arg 1%} to false
+
+aliases:
+	dropweapons = bow, arrow, flint and steel, stone sword, iron sword, gold sword, diamond sword, lava bucket, 373:8232, 373:8264, 373:16424, 373:16456, 373:8268, 373:8236, 373:16460, 373:16428
+
+on drop of dropweapons:
+	if {contraband.%player%} is true:
+		send "&8[&9Contraband&8]&c Thank you for surrendering your contraband." to player
+		set {droppedyet.%arg 1%} to true
+		set {contraband.%arg 1%} to false
+
+
+on hunger level change:
+	player is not holding a steak or apple
+	player has permission "kdc.guard"
+	chance of 50%:
+		cancel the event
+
+on death of a player:
+	player has permission "kdc.guard"
+	loop drops:
+		add loop-item to {_drops::*}
+	delete drops
+	wait 2 ticks
+	while victim is not alive:
+		wait 2 ticks
+		player is not online
+		stop
+	give {_drops::*} to the victim
+
+on right click holding a gapple:
+	player has permission "kdc.guard"
+	if player's health is 10:
+		stop
+	else:
+		set the player's health to 10
+		remove 1 of the held item from player
+
+command /guard <player>:
+	trigger:
+		make player execute command "/ar set %arg 1% 0"
+		make player execute command "/pex user %arg 1% group set C-Guard"
+		make player execute command "/spawn %arg 1%"
+		make player execute command "/clan invite %arg 1%"
+		send "&8[&9Guard&8]&7 You have been promoted to &6C-Guard&7." to arg 1
+		send "&8[&9Guard&8]&7 Type &a/kit guard&7 to obtain your first kit!" to arg 1
+		send "&8[&9Guard&8]&7 Promotion successful." to executor
+
+command /changecolor:
+	trigger:
+		if {changecredits.%player%} is greater than or equal to 1:
+			set {changecredids.%player%} to {changecredits.%player%} - 1
+			set {colorchange.%player%} to true
+			send "&7Here are all the colors that your name can be:"
+			send "" to player
+			send "&0Black &l|  &1DarkBlue &l|  &2DarkGreen &l|  &3Teal &l|" to player
+			send "&5Purple &l|  &6Gold &l|  &7LightGray &l|  &8DarkGray &l|  &9Blue &l|" to player
+			send "&aLightGreen &l|  &bAqua &l|  &dPink &l|  &eYellow &l|  &fWhite &l|" to player
+			wait 2 irl seconds
+			send "&7Please type the name (&othat you see above&7) of the color you want your name to be."
+		else:
+			send "&4Error! &7You do not have any color change credits." to player
+			send "&7If you'd like, you can purchase more in &bour shop at: dafa." to player
+
+on chat:
+	if {colorchange.%player%} is true:
+		if message contains "black":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &0%player%"
+			stop
+		if message contains "darkblue":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &1%player%"
+			stop
+		if message contains "darkgreen":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &2%player%"
+			stop
+		if message contains "teal":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &3%player%"
+			stop
+		if message contains "purple":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &5%player%"
+			stop
+		if message contains "gold":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &6%player%"
+			stop
+		if message contains "lightgray":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &7%player%"
+			stop
+		if message contains "darkgray":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &8%player%"
+			stop
+		if message contains "blue":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &9%player%"
+			stop
+		if message contains "lightgreen":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &a%player%"
+			stop
+		if message contains "aqua":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &b%player%"
+			stop
+		if message contains "pink":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &d%player%"
+			stop
+		if message contains "yellow":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &e%player%"
+			stop
+		if message contains "white":
+			cancel the event
+			set {colorchange.%player%} to false
+			execute command "/nick %player% &f%player%"
+			stop

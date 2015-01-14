@@ -1,0 +1,857 @@
+# First join --> Randomly select a faction for new players.
+on first join:
+	execute console command "evanish %player%"
+	execute console command "effect %player% INVISIBILITY clear"
+	chance of 30%:
+		execute console command "kit fjabnegation %player%"
+		execute console command "pex user %player% group set Abnegation"
+		wait 1 irl second
+		send "&7Welcome to &cDivergentMC&8 powered by Guardian Realms&7."
+		wait 1 irl second
+		send "&7You were born into the faction of &cabnegation&7, which values selflessness."
+		stop
+	chance of 32%:
+		execute console command "kit fjdauntless %player%"
+		execute console command "pex user %player% group set Dauntless"
+		wait 1 irl second
+		send "&7Welcome to &cDivergentMC&8 powered by Guardian Realms&7."
+		wait 1 irl second
+		send "&7You were born into the faction of &cdauntless&7, which values bravery."
+		stop
+	chance of 34%:
+		execute console command "kit fjerudite %player%"
+		execute console command "pex user %player% group set Erudite"
+		wait 1 irl second
+		send "&7Welcome to &cDivergentMC&8 powered by Guardian Realms&7."
+		wait 1 irl second
+		send "&7You were born into the faction of &cerudite&7, which values knowledge."
+		stop
+	chance of 36%:
+		execute console command "kit fjamity %player%"
+		execute console command "pex user %player% group set Amity"
+		wait 1 irl second
+		send "&7Welcome to &cDivergentMC&8 powered by Guardian Realms&7."
+		wait 1 irl second
+		send "&7You were born into the faction of &camity&7, which values kindness."
+		stop
+	chance of 20%:
+		execute console command "kit fjcandor %player%"
+		execute console command "pex user %player% group set Candor"
+		wait 1 irl second
+		send "&7Welcome to &cDivergentMC&8 powered by Guardian Realms&7."
+		wait 1 irl second
+		send "&7You were born into the faction of &ccandor&7, which values honesty."
+		stop
+
+on right click holding diamond sword of sharpness 10:
+	if target block is stone or cobblestone:
+		execute console command "ci %player%"
+		execute console command "warp ChoseAbnegation %player%"
+		send "&7We've been waiting, welcome to &cabnegation." to player
+		loop 15 times:
+			drop redstone dust named "1rdust1" at the position at (-257, 70, 82)
+			drop rose red named "r2dust1"  at the position at (-256, 70, 81)
+			drop redstone dust named "r3dust1"  at the position at (-256, 71, 82)
+			drop redstone dust named "rd5ust1"  at the position at (-255, 70, 83)
+			drop rose red named "rdu4st1"  at the position at (-254, 71, 83)
+			drop redstone dust named "rdu6st1"  at the position at (-255, 72, 82)
+			drop redstone dust named "rdu7st1"  at the position at (-255, 73, 82)
+			drop rose red named "rdu8st1"  at the position at (-255, 73, 81)
+			drop redstone dust named "rdu9st1"  at the position at (-254, 70, 82)
+			drop redstone dust named "rdu10st1"  at the position at (-254, 70, 81)
+			drop rose red named "rdu11st1"  at the position at (-253, 70, 82)
+			wait 0.1 irl seconds
+		wait 3 irl seconds
+		send "&7It's time to get going, let's get you bandaged up."
+		execute console command "pex user %player% add essentials.remove"
+		make player execute command "eremove drops 7"
+		execute console command "pex user %player% remove essentials.remove"
+		execute console command "pex user %player% group set Abnegation2"
+	if target block is fire or coal block or netherrack:
+		execute console command "ci %player%"
+		execute console command "warp ChoseDauntless %player%"
+		send "&7We've been waiting, welcome to &cdauntless." to player
+		loop 15 times:
+			drop redstone dust named "d1rdust1" at the position at (-272, 72, 83)
+			drop rose red named "r2dudst1"  at the position at (-271, 70, 84)
+			drop redstone dust named "r3ddust1"  at the position at (-269, 70, 82)
+			drop redstone dust named "rd5dust1"  at the position at (-270, 72, 81)
+			drop rose red named "rdu4dt1"  at the position at (-271, 72, 81)
+			drop redstone dust named "rddu6st1"  at the position at (-272, 71, 82)
+			drop redstone dust named "rdud7st1"  at the position at (-271, 73, 82)
+			drop redstone dust named "rd5dacust1"  at the position at (-270, 72, 81)
+			drop rose red named "rdu4dact1"  at the position at (-271, 72, 81)
+			drop redstone dust named "rddu6acst1"  at the position at (-272, 71, 82)
+			drop redstone dust named "rdud7stac1"  at the position at (-271, 73, 82)
+			wait 0.1 irl seconds
+		wait 3 irl seconds
+		send "&7It's time to get going, let's get you bandaged up."
+		execute console command "pex user %player% add essentials.remove"
+		make player execute command "eremove drops 7"
+		execute console command "pex user %player% remove essentials.remove"
+		execute console command "pex user %player% group set Dauntless2"
+	if target block is wool:
+		execute console command "ci %player%"
+		execute console command "warp ChoseErudite %player%"
+		send "&7We've been waiting, welcome to &cerudite." to player
+		loop 15 times:
+			drop redstone dust named "1rduest1" at the position at (-280, 70, 83)
+			drop rose red named "r2duset1"  at the position at (-279, 71, 83)
+			drop redstone dust named "r3duest1"  at the position at (-278, 71, 83)
+			drop redstone dust named "rd5uset1"  at the position at (-277, 70, 82)
+			drop rose red named "rdu4ste1"  at the position at (-278, 72, 82)
+			drop rose red named "rdue6st1"  at the position at (-279, 73, 82)
+			drop redstone dust named "rdue7st1"  at the position at (-280, 72, 82)
+			drop rose red named "rdue8st1"  at the position at (-281, 70, 82)
+			drop redstone dust named "rdue9st1"  at the position at (-278, 74, 81)
+			drop redstone dust named "rdue10st1"  at the position at (-280, 70, 81)
+			wait 0.1 irl seconds
+		wait 3 irl seconds
+		send "&7It's time to get going, let's get you bandaged up."
+		execute console command "pex user %player% add essentials.remove"
+		make player execute command "eremove drops 7"
+		execute console command "pex user %player% remove essentials.remove"
+		execute console command "pex user %player% group set Erudite2"
+	if target block is grass or hay block or dirt:
+		execute console command "ci %player%"
+		execute console command "warp ChoseAmity %player%"
+		send "&7We've been waiting, welcome to &camity." to player
+		loop 15 times:
+			drop redstone dust named "1rduast1" at the position at (-263, 70, 84)
+			drop rose red named "r2dusat1"  at the position at (-264, 70, 83)
+			drop redstone dust named "r3daust1"  at the position at (-263, 71, 83)
+			drop redstone dust named "rd5uat1"  at the position at (-262, 72, 83)
+			drop rose red named "rdu4sta1"  at the position at (-261, 70, 82)
+			drop redstone dust named "rdua6st1"  at the position at (-262, 72, 82)
+			drop redstone dust named "rdu7ast1"  at the position at (-263, 73, 82)
+			drop rose red named "rdu8ast1"  at the position at (-264, 72, 82)
+			drop redstone dust named "rdua9st1"  at the position at (-265, 70, 82)
+			drop redstone dust named "rdu1a0st1"  at the position at (-264, 71, 81)
+			drop rose red named "rdu11sat1"  at the position at (-262, 70, 84)
+			wait 0.1 irl seconds
+		wait 3 irl seconds
+		send "&7It's time to get going, let's get you bandaged up."
+		execute console command "pex user %player% add essentials.remove"
+		make player execute command "eremove drops 7"
+		execute console command "pex user %player% remove essentials.remove"
+		execute console command "pex user %player% group set Amity2"
+	if target block is glass:
+		execute console command "ci %player%"
+		execute console command "warp ChoseCandor %player%"
+		send "&7We've been waiting, welcome to &ccandor." to player
+		loop 15 times:
+			drop redstone dust named "1rdusct1" at the position at (-247, 70, 84)
+			drop rose red named "r2ducst1"  at the position at (-246, 71, 83)
+			drop redstone dust named "r3dusct1"  at the position at (-248, 70, 83)
+			drop redstone dust named "rd5usct1"  at the position at (-249, 71, 82)
+			drop rose red named "rduc4st1"  at the position at (-248, 71, 82)
+			drop redstone dust named "rduc6st1"  at the position at (-247, 72, 82)
+			drop redstone dust named "rducst1"  at the position at (-246, 72, 82)
+			drop rose red named "rdu8cst1"  at the position at (-245, 70, 82)
+			drop redstone dust named "rduc9st1"  at the position at (-246, 73, 81)
+			drop redstone dust named "rdu10cst1"  at the position at (-247, 73, 81)
+			drop rose red named "rdu11sct1"  at the position at (-248, 71, 81)
+			wait 0.1 irl seconds
+		wait 3 irl seconds
+		send "&7It's time to get going, let's get you bandaged up."
+		execute console command "pex user %player% add essentials.remove"
+		make player execute command "eremove drops 7"
+		execute console command "pex user %player% remove essentials.remove"
+		execute console command "pex user %player% group set Candor2"
+
+on right click holding nether star:
+	world is "aptitude"
+	send "&7Buy tickets to see Divergent starring Shailene Woodley and Theo James here: &c&nhttp://bit.ly/watch-DIVERGENT"
+
+on right click holding book:
+	world is "aptitude"
+	send "&7Buy the bestselling novel that started it all by Veronica Roth here: &c&nhttp://bit.ly/read-DIVERGENT"
+
+on enter of the region "choosing":
+	wait 0.1 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp choosingplatform %player%"
+	execute console command "effect %player% BLINDNESS 2 127"
+	execute console command "effect %player% SLOW 1 127"
+	execute console command "kit choice %player%"
+	wait 0.2 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on enter of region "candor0a" or "candor0b" or "candor0c" or "candor0d" or "abnegation0a" or "abnegation0b" or "abnegation0c" or "abnegation0d" or "amity0a" or "amity0b" or "amity0c" or "amity0d" or "dauntless0a" or "dauntless0b" or "dauntless0c" or "dauntless0d" or "erudite0a" or "erudite0b" or "erudite0c" or "erudite0d":
+	cancel the event
+
+on enter of region "blocked1":
+	cancel the event
+	send "&4Your actions have been reported to Erudite faction leaders for immediate review." to player
+	execute console command "ci %player%"
+	execute console command "warp ChoosingStart %player%"
+
+on death of pig:
+	clear drops
+	execute console command "eco give %attacker% 1"
+	send "<gold>+1 coin" to attacker
+
+on click holding emerald of looting 1:
+	world is "aptitude"
+	send "Welcome to DivergentMC powered by Guardian Realms!" to player
+	execute console command "ci %player%"
+	wait 0.25 irl seconds
+	execute console command "give %player% emerald 1 sharp:1 name:&cBack_&7(Left_click)_&8&l_<<__&f||__&8&l>>_&6Next&7_(Right_click) lore:&a&lWelcome_tutorial"
+
+on click holding blaze powder of efficiency 1:
+	send "&7Are you sure you want to skip the tutorial?" to player
+	execute console command "ci %player%"
+	execute console command "kit skabnegation %player%"
+	wait 0.5 irl seconds
+	send "&7To skip the tutorial drop the &a&lemerald&7, otherwise, please drop the &c&lredstone&7."
+ 
+on drop of emerald of efficiency 1:
+	cancel the event
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp testingstart %player%"
+	send "&7Your aptitude testing will now &cbegin&7. Do your best and remember, there are no wrong answers."
+
+on drop of redstone of efficiency 1:
+	cancel the event
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp tutorial %player%"
+	send "&7We will now restart the welcome tutorial."
+	execute console command "kit fjabnegation %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on click holding blaze powder of efficiency 2:
+	send "&7Are you sure you want to skip the tutorial?" to player
+	execute console command "ci %player%"
+	execute console command "kit skdauntless %player%"
+	wait 0.5 irl seconds
+	send "&7To skip the tutorial drop the &a&lemerald&7, otherwise, please drop the &c&lredstone&7."
+ 
+on drop of emerald of efficiency 2:
+	cancel the event
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp testingstart %player%"
+	send "&7Your aptitude testing will now &cbegin&7. Do your best and remember, there are no wrong answers."
+
+on drop of redstone of efficiency 2:
+	cancel the event
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp tutorial %player%"
+	send "&7We will now restart the welcome tutorial."
+	execute console command "kit fjdauntless %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on click holding blaze powder of efficiency 3:
+	send "&7Are you sure you want to skip the tutorial?" to player
+	execute console command "ci %player%"
+	execute console command "kit skerudite %player%"
+	wait 0.5 irl seconds
+	send "&7To skip the tutorial drop the &a&lemerald&7, otherwise, please drop the &c&lredstone&7."
+ 
+on drop of emerald of efficiency 3:
+	execute console command "ci %player%"
+	execute console command "warp testingstart %player%"
+	send "&7Your aptitude testing will now &cbegin&7. Do your best and remember, there are no wrong answers."
+
+on drop of redstone of efficiency 3:
+	cancel the event
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp tutorial %player%"
+	send "&7We will now restart the welcome tutorial."
+	execute console command "kit fjerudite %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on click holding blaze powder of efficiency 4:
+	send "&7Are you sure you want to skip the tutorial?" to player
+	execute console command "ci %player%"
+	execute console command "kit skamity %player%"
+	wait 0.5 irl seconds
+	send "&7To skip the tutorial drop the &a&lemerald&7, otherwise, please drop the &c&lredstone&7."
+ 
+on drop of emerald of efficiency 4:
+	cancel the event
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp testingstart %player%"
+	send "&7Your aptitude testing will now &cbegin&7. Do your best and remember, there are no wrong answers."
+
+on drop of redstone of efficiency 4:
+	cancel the event
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp tutorial %player%"
+	send "&7We will now restart the welcome tutorial."
+	execute console command "kit fjamity %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on click holding blaze powder of efficiency 5:
+	send "&7Are you sure you want to skip the tutorial?" to player
+	execute console command "ci %player%"
+	execute console command "kit skcandor %player%"
+	wait 0.5 irl seconds
+	send "&7To skip the tutorial drop the &a&lemerald&7, otherwise, please drop the &c&lredstone&7."
+ 
+on drop of emerald of efficiency 5:
+	cancel the event
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp testingstart %player%"
+	send "&7Your aptitude testing will now &cbegin&7. Do your best and remember, there are no wrong answers."
+
+on drop of redstone of efficiency 5:
+	cancel the event
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	execute console command "warp tutorial %player%"
+	send "&7We will now restart the welcome tutorial."
+	execute console command "kit fjcandor %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on rightclick holding emerald of sharpness 1:
+	send "right click" to player
+
+on leftclick holding emerald of sharpness 1:
+	send "left click" to player
+
+on walking on grass:
+	world is "aptitude"
+	player does not have the permission "aptitude.admin"
+	execute console command "warp testingstart %player%"
+	send "&4The Erudite faction leaders have determined that there was an error with your test." to player
+	send "&4As such your test has been restarted, and all previous answers have been discarded." to player
+	send "&4Please start your test again, and try to not break out this time." to player
+ 
+on rightclick on villager:
+	world is "aptitude"
+	cancel the event
+	send "<red>You cannot interact with villagers while testing." to player
+
+on damage of villager:
+	world is "aptitude"
+	cancel the event
+	send "<red>You cannot attack villagers while testing." to attacker
+
+on spawn of villager:
+	world is "aptitude" or "green"
+	apply potion of slowness of tier 127 to the villager for 999 days
+	apply potion of jump boost of tier 129 to the villager for 999 days
+
+on drink:
+	world is "aptitude"
+	player does not have permission "aptitude.admin"
+	cancel the event
+	send "&4Your actions have been reported to Erudite faction leaders for immediate review." to player
+
+at 16:00:
+	set time to 8:00
+
+on spawn of a zombie or skeleton or creeper or spider or endermen or witch or pig or horse or cow:
+	world is "aptitude"
+	cancel event
+
+on place:
+	world is "aptitude"
+	player does not have permission "aptitude.admin"
+	cancel the event
+	send "&4Your actions have been reported to Erudite faction leaders for immediate review." to player
+
+on drop of brewing stand item or potion of or nether wart item or ghast tear or locked chest or stone axe or flint and steel:
+	world is "aptitude"
+	player does not have permission "aptitude.admin"
+	cancel the event
+	send "&4Your actions have been reported to Erudite faction leaders for immediate review." to player
+
+on break:
+	world is "aptitude"
+	player does not have permission "aptitude.admin"
+	cancel the event
+	send "&4Your actions have been reported to Erudite faction leaders for immediate review." to player
+
+on walking on packed ice:
+	world is "aptitude"
+	execute console command "warp aptdone %player%"
+	wait 0.5 irl seconds
+	send "&dYou have completed testing. Welcome to the city."
+	execute console command "evanish %player%"
+	wait 2 irl seconds
+	send "&7As you have finished testing the &9Erudite&7 faction leaders have enabled other players for you. &4Thank you for understanding." to player
+
+on first join:
+	world is "aptitude"
+	execute console command "evanish %player%"
+
+on enter of region "1at":
+	send "&7The test will begin shortly, &6I just have to pull up your information." to player
+	execute console command "effect %player% CONFUSION 12 6"
+	execute console command "effect %player% SLOW 10 127"
+	execute console command "effect %player% JUMP 10 129"
+	execute console command "effect %player% BLINDNESS 12 5"
+	execute console command "effect %player% HUNGER 10 127"
+	wait 9 irl seconds
+	execute console command "warp apt1 %player%"
+	execute console command "give %player% apple 1"
+
+on player eating apple:
+	world is "aptitude"
+	cancel event
+	execute console command "effect %player% SATURATION 1 100"
+	execute console command "effect %player% REGENERATION 1 100"
+	send "&cFirst test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 2 5"
+	execute console command "warp apt2 %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.25 irl seconds
+	execute console command "kit apt3 %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on player drop of apple:
+	world is "aptitude"
+	cancel event
+	execute console command "effect %player% SATURATION 1 100"
+	execute console command "effect %player% REGENERATION 1 100"
+	send "&2First test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 2 5"
+	execute console command "warp apt2alt %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.25 irl seconds
+	execute console command "kit apt3alt %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on player drop of light green wool:
+	world is "aptitude"
+	cancel event
+	send "&cSecond test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp apt3 %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+
+on player drop of red wool:
+	world is "aptitude"
+	cancel event
+	send "&2Second test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp apt3alt %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+
+on player drop of light green hardened clay:
+	world is "aptitude"
+	cancel event
+	send "&cSecond test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp apt03 %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+
+on player drop of red hardened clay:
+	world is "aptitude"
+	cancel event
+	send "&2Second test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp apt03alt %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+
+on enter of region "G3apt01":
+	send "&2Third test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp G3at01after %player%"
+	wait 3 irl seconds
+	execute console command "kit SH5 %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on enter of region "G3apt02":
+	send "&2Third test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp G3at02after %player%"
+	wait 3 irl seconds
+	execute console command "kit LO3 %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on enter of region "G3apt03":
+	send "&2Third test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp G3at03after %player%"
+	wait 3 irl seconds
+	execute console command "kit SH3 %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on enter of region "G4apt04":
+	send "&2Third test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp G3at04after %player%"
+	wait 3 irl seconds
+	execute console command "kit SH1 %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on enter of region "3apt01":
+	send "&cThird test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp 3at01after %player%"
+	wait 3 irl seconds
+	execute console command "kit LO1 %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on enter of region "3apt02":
+	send "&cThird test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp 3at02after %player%"
+	wait 3 irl seconds
+	execute console command "kit LO2 %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on enter of region "3apt03":
+	send "&cThird test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp 3at03after %player%"
+	wait 3 irl seconds
+	execute console command "kit SH4 %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on enter of region "3apt04":
+	send "&cThird test completed. Now progressing onto next stage."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp 3at04after %player%"
+	wait 3 irl seconds
+	execute console command "kit SH2 %player%"
+	wait 0.5 irl seconds
+	execute console command "minecraft:clear %player% minecraft:stained_glass 15"
+
+on click on a log or leaves holding a stone axe of sharpness 1:
+	cancel the event
+	execute console command "ci %player%"
+	send "&2Final test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-DAC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cdauntless &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a flint and steel of sharpness 1:
+	cancel the event
+	execute console command "ci %player%"
+	send "&cFinal test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-DC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &ccandor &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a stone axe of sharpness 2:
+	cancel the event
+	execute console command "ci %player%"
+	send "&2Final test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-AC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &camity &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a flint and steel of sharpness 2:
+	cancel the event
+	execute console command "ci %player%"
+	send "&cFinal test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-AC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &ccandor &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a stone axe of sharpness 3:
+	cancel the event
+	execute console command "ci %player%"
+	send "&2Final test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-EDAC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cerudite &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a flint and steel of sharpness 3:
+	cancel the event
+	execute console command "ci %player%"
+	send "&cFinal test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-EDC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cdauntless &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a stone axe of sharpness 4:
+	cancel the event
+	execute console command "ci %player%"
+	send "&2Final test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-EAC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &camity &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a flint and steel of sharpness 4:
+	cancel the event
+	execute console command "ci %player%"
+	send "&cFinal test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-EC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cerudite &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a stone axe of sharpness 5:
+	cancel the event
+	execute console command "ci %player%"
+	send "&2Final test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-ADAC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cabnegation &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a flint and steel of sharpness 5:
+	cancel the event
+	execute console command "ci %player%"
+	send "&cFinal test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-ADC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cabnegation &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a stone axe of looting 1:
+	cancel the event
+	execute console command "ci %player%"
+	send "&2Final test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-EAC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cerudite &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a flint and steel of looting 1:
+	cancel the event
+	execute console command "ci %player%"
+	send "&cFinal test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-EC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cerudite &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a stone axe of looting 2:
+	cancel the event
+	execute console command "ci %player%"
+	send "&2Final test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-AEAC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cabnegation &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a flint and steel of looting 2:
+	cancel the event
+	execute console command "ci %player%"
+	send "&cFinal test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-AEC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &ccandor &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a stone axe of looting 3:
+	cancel the event
+	execute console command "ci %player%"
+	send "&2Final test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-AEDAC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cabnegation &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player
+
+on click on a log or leaves holding a flint and steel of looting 3:
+	cancel the event
+	execute console command "ci %player%"
+	send "&cFinal test completed. Your results are being calculated."
+	execute console command "effect %player% BLINDNESS 3 5"
+	execute console command "warp F-AEDC %player%"
+	wait 0.25 irl seconds
+	execute console command "ci %player%"
+	wait 0.5 irl seconds
+	execute console command "ci %player%"
+	send "&7Stop, get up. I can't believe this. Your test results were ..." to player
+	send "&c inconclusive." to player
+	send "&7It's extremely rare, it means that they cannot &ccontrol you&7, you do not conform." to player
+	send "&7It also means that you pose a threat to society, and they will do everything in their power to remove you." to player
+	send "&7I will manually enter your results as &cdauntless &7but" to player
+	send "&7 you need to go home now. Say you got dizzy after the test and" to player
+	send "&7 were sent home. Please, hurry." to player
+	send "&4Do not tell anyone. Choose a faction tomorrow and hide there, it's all you can do." to player
+	send "&d&oYour test results are on the wall to the left." to player

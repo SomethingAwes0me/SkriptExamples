@@ -1,0 +1,188 @@
+#
+# This file should only contain missions for Dauntless members.
+# When a player chooses Dauntless at the choosing ceremony it sets {dareward1.%player%} to true, allowing them to do the first mission.
+# At the choosing ceremony we will also set {dauntless.%player%} to true, as to lessen the load on /progress.
+# The output for /progress is updated with each mission completion, as /progress checks for {dareward#.%player%}.
+#
+#
+# Notes for making quests:
+# 1) Each mission should have {dareward#.%player%} near the beginning
+# 2) Each mission should have 'set {dareward#.%player%} to false' near the end of a mission to prevent the player from doing it twice.
+# 3) Right after it's set to false, the quest should set {dareward#+1.%player%} to true to enable them to do the next quest.
+#
+
+
+# First Mission --> Players complete a parkour course after jumping off the top of Dauntless Headquarters. This parkour is around the
+# building neighboring HQ, and has approximately 5-6 checkpoints along the way. Players can return to the last checkpoint that they # 
+# reached by typing /checkpoint.
+
+on enter of region "DA1CP0":
+	if {dareward1.%player%} is true:
+		set {daq1.%player%} to true
+		set {da1.%player%} to the location at the player
+		send "&8[&6Mission&8]&3 Take a leap of faith! Type &a/checkpoint&3 if you fall."
+on enter of region "DA1CP1":
+	if {dareward1.%player%} is true:
+		set {da1.%player%} to the location at the player
+		send "&8[&6Mission&8]&3 Checkpoint saved. Type &a/checkpoint&3 to come back."
+on enter of region "DA1CP2":
+	if {dareward1.%player%} is true:
+		set {da1.%player%} to the location at the player
+		send "&8[&6Mission&8]&3 Checkpoint saved. Type &a/checkpoint&3 to come back."
+on enter of region "DA1CP3":
+	if {dareward1.%player%} is true:
+		set {da1.%player%} to the location at the player
+		send "&8[&6Mission&8]&3 Checkpoint saved. Type &a/checkpoint&3 to come back."
+on enter of region "DA1CP4":
+	if {dareward1.%player%} is true:
+		set {da1.%player%} to the location at the player
+		send "&8[&6Mission&8]&3 Checkpoint saved. Type &a/checkpoint&3 to come back."
+on enter of region "DA1CP5":
+	if {dareward1.%player%} is true:
+		set {da1.%player%} to the location at the player
+		send "&8[&6Mission&8]&3 Checkpoint saved. Type &a/checkpoint&3 to come back."
+on enter of region "DA1CP6":
+	set {daq1.%player%} to false
+	if {dareward1.%player%} is true:
+		send "&8[&6Mission&8]&3 You've completed your first mission! Type &a/mission&3   and follow the instructions to get your gun!"
+		execute console command "mc %player% 150"
+		set {dareward1.%player%} to false
+		set {dareward2.%player%} to true
+
+# ---- NEXT MISSION ---- #
+
+# Second Mission --> Players must return to the Dauntless Headquarters and travel up to the fourth floor where they will meet their
+# training instructor, Four. After talking to Four he will give them a gun which they will use to progress through further quests.
+
+on enter of region "FoursBiggerArea":
+	if {dareward2.%player%} is true:
+		set {dareward2.%player%} to false
+		send "&8[&b&lFour&8]: &7Welcome to Dauntless, &c%player%&7. We're excited to have you." to player
+		wait 0.1 irl seconds
+		send "&8[&b&lFour&8]: &7So, since you were able to complete your first mission without much trouble we've decided to give you a &cgun&7." to player
+		wait 0.1 irl seconds
+		send "&8[&b&lFour&8]: &7It's nothing much but you can upgrade it as you progress." to player
+		wait 0.1 irl seconds
+		execute console command "shot give %player% PYTHON"
+		wait 5 irl seconds
+		send "&8[&b&lFour&8]: &7You should probably get some training before using it." to player
+		wait 0.1 irl seconds
+		set {dareward3.%player%} to true
+		send "&8[&6Mission&8]&3 Mission completed! Type &a/mission&3 and follow the instructions to get some training!" to player
+
+# ---- NEXT MISSION ---- #
+
+# Third Mission --> After talking to Four players are instructed to head up to the sixth floor to learn how to use their guns. When
+# they get up to the sixth floor there is a variety of sheep/zombies named Innocent/Enemy respectively. Hitting the zombie has a
+# chance of giving them 1 point to the mission completion, and hitting a sheep has a chance of removing 3 points. A total of 150
+# points is needed to move on to the next mission.
+
+# Punish players for hitting the innocents.
+on damage:
+	world is "green"
+	victim is a sheep
+	projectile is snowball
+	if {dareward3.%attacker%} is true:
+		chance of 10%:
+			send "&8[&b&lFour&8]:&7 Hey, &cdon't hit innocents&7! We don't want any lawsuits!" to attacker
+			execute console command "ct %attacker% 3 "
+			stop
+
+# Reward players for hitting the enemies.
+on damage:
+	world is "green"
+	victim is a zombie
+	projectile is snowball
+	if {dareward3.%attacker%} is true:
+		if {daq3.%attacker%} is greater than or equal to 150:
+			cancel the event
+			set {dareward3.%attacker%} to false
+			set {dareward4.%attacker%} to true
+			send "&8[&b&lFour&8]:&7 That's enough training now, great work!" to attacker
+			send "&8[&6Mission&8]&3 Mission completed! Type &a/mission&3 and follow the instructions to put your gun to use!" to attacker
+			execute console command "mc %attacker% 200"
+			stop
+		if {daq3.%attacker%} is less than 150:
+			add 1 to {daq3.%attacker%}
+			chance of 2%:
+				send "&8[&b&lFour&8]:&7 Take cover! (Use &csneak&7 to take cover!)" to attacker
+				wait 3 seconds
+				attacker is sneaking:
+					send "&8[&b&lFour&8]:&7 All clear! That was a close one." to attacker
+					stop
+				attacker is not sneaking:
+					chance of 25%:
+						damage attacker by 2 hearts
+						send "&8[&b&lFour&8]:&7 Ouch, you got hit! Make sure to &csneak&7 next time." to attacker
+						stop
+					chance of 50%:
+						damage attacker by 1 heart
+						send "&8[&b&lFour&8]:&7 Ouch, you got hit! Make sure to &csneak&7 next time." to attacker
+						stop
+				damage attacker by 4 hearts
+				send "&8[&b&lFour&8]:&7 Ouch, you got hit! Make sure to &csneak&7 next time." to attacker
+				stop
+			chance of 5%:
+				execute console command "cg %attacker% 2"
+				stop
+			chance of 1%:
+				execute console command "cg %attacker% 5"
+				stop
+		cancel the event
+
+# Make sure that they don't get too close to the targets.
+on enter of region "DASB1":
+	cancel the event
+	push the player 2 block behind
+	send "&8[&b&lFour&8]:&7 Come on, give the enemies a chance!" to player
+
+# ---- NEXT MISSION ---- #
+
+# Fourth Mission --> Players need to go to Abnegation HQ and talk to Markus, who will give
+# them a city map which will let them go places, yo.
+
+on enter of region "MarkusAbnegationHQ":
+	if {dareward4.%player%} is true:
+		send "&8[&b&lMarkus&8]:&7 Hello there, Dauntless Initiate. I heard that you'd be coming."
+		send "&8[&b&lMarkus&8]:&7 So, what do you want from me, a map?"
+		send "&8[&b&lMarkus&8]:&7 I suppose I could give you one, but it's going to cost you."
+		send "&8[&6Mission&8] &3Markus will give you a map for &a75 coins&3."
+		send "&8[&6Mission&8] &3If you're willing to purchase it, say &apurchase&3."
+on chat:
+	if {dareward4.%player%} is true:
+		region is "MarkusAbnegationHQ"
+		message contains "purchase"
+		execute console command "eco take 75 %player%"
+		send "&8[&6Mission&8] &3Successfully purchased one city map from Markus."
+		send "&8[&6Mission&8] &3Click with the map to get around the city."
+		send "&8[&b&lMarkus&8]:&7 It was a pleasure doing business with you."
+		execute console command "mc %player% 5"
+		set {dareward4.%player%} to false
+		set {dareward5.%player%} to true
+		set {daq5.%player%} to true
+
+# ---- NEXT MISSION ---- #
+
+# Fifth Mission --> Players need to go to the library and talk to the librarian to learn
+# all about crafting.
+
+on enter of region "Librarian":
+	if {dareward5.%player%} is true:
+		if {daq5.%player%} is true:
+			send "&8[&b&lBianca&8]:&7 Ah, welcome to the library!"
+			send "&8[&b&lBianca&8]:&7 Rumor has it you're here to learn about crafting, is that true?"
+			send "&8[&b&lBianca&8]:&7 I've got the perfect book for you! It's in the crafting section, under sciences."
+			send "&8[&b&lBianca&8]:&7 Please bring it to me once you're finished."
+			set {daq5.%player%} to false
+on drop:
+	if {dareward5.%player%} is true:
+		if the 1st line of lore of the item is "&0DAUNTLESSQUEST5":
+			player is in the region "Librarian"
+			cancel the event
+			take the item from the player
+			send "&8[&b&lBianca&8]:&7 Thank you, I hope you found it useful."
+			send "&8[&b&lBianca&8]:&7 Please come back whenever you need my help."
+			execute console command "mc %player% 25"
+			set {dareward5.%player%} to false
+			set {dareward6.%player%} to true
+

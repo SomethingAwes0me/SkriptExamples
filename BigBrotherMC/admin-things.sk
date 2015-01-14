@@ -1,0 +1,76 @@
+# ---- VARIOUS THINGS FOR DEBUGGING ---- #
+
+
+
+# ---- Custom Join and Leave messages ---- #
+on join:
+	set join message to ""
+	stop
+on quit:
+	set leave message to ""
+	stop
+
+on right click on stone button:
+	if player is in region "dr":
+		cancel the event
+		wait 1 second
+		loop all players:
+			"%region at loop-player%" contains "diaryroom"
+			execute console command "/playsound random.break %player%"
+			set block at location 474, 24, -69 to red wool
+			set block at location 474, 24, -72 to red wool
+			wait 3 seconds
+			set block at location 474, 24, -69 to white wool
+			set block at location 474, 24, -72 to white wool
+			stop
+		wait 3 irl seconds
+		execute console command "/playsound random.orb %player%"
+		set block at location 474, 24, -69 to light green wool
+		set block at location 474, 24, -72 to light green wool
+		set block at location 474, 18, -70 to redstone block
+		set block at location 474, 18, -71 to redstone block
+		wait 3 seconds
+		set block at location 474, 24, -69 to white wool
+		set block at location 474, 24, -72 to white wool
+		set block at location 474, 18, -70 to dirt
+		set block at location 474, 18, -71 to dirt
+		stop
+
+
+	if player is in region "storage":
+		cancel the event
+		wait 3 irl seconds
+		chance of 50%:
+			execute console command "/playsound random.orb %player%"
+			set block at location 454, 24, -68 to light green wool
+			set block at location 451, 24, -68 to light green wool
+			set block at location 453, 18, -68 to redstone block
+			set block at location 452, 18, -68 to redstone block
+			wait 3 seconds
+			set block at location 454, 24, -68 to white wool
+			set block at location 451, 24, -68 to white wool
+			set block at location 453, 18, -68 to dirt
+			set block at location 452, 18, -68 to dirt
+			stop		
+
+		chance of 50%:
+			execute console command "/playsound random.break %player%"
+			set block at location 454, 24, -68 to red wool
+			set block at location 451, 24, -68 to red wool
+			wait 3 seconds
+			set block at location 454, 24, -68 to white wool
+			set block at location 451, 24, -68 to white wool
+			stop
+
+		chance of 100%:
+			execute console command "/playsound random.orb %player%"
+			set block at location 454, 24, -68 to light green wool
+			set block at location 451, 24, -68 to light green wool
+			set block at location 453, 18, -68 to redstone block
+			set block at location 452, 18, -68 to redstone block
+			wait 3 seconds
+			set block at location 454, 24, -68 to white wool
+			set block at location 451, 24, -68 to white wool
+			set block at location 453, 18, -68 to dirt
+			set block at location 452, 18, -68 to dirt
+			stop

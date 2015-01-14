@@ -1,0 +1,240 @@
+# ---- Scripts for the first power of veto competition competition ---- #
+command /pov1:
+	description: Start the first POV competition.
+	usage: /pov1
+	permission: bigbrother.competitionstart
+	trigger:
+		# Initial start, get everyone to the backyard!
+		set {pov.1} to true
+		broadcast "&8[&d+&8]&3 Attention house guests! &7Please head to the &abackyard&7 for the first POV competition!"
+		wait 10 irl seconds
+
+		# Brief introduction
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 It's time to get swinging, so let's begin the first POV competition of the summer!"
+		wait 5 irl seconds
+
+		# Get everyone into a colored room
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 I need everyone to stand on an iron trap door, one person per trap door. You have 15 seconds, starting now."
+		wait 15 irl seconds
+		make player execute command "/rg select pov1_loading"
+		make player execute command "//replace 167 0"
+		wait 3 irl seconds
+		make player execute command "//replace 0 126:11"
+		make player execute command "/rg select pov1_before_closed"
+		make player execute command "//set 0"
+		broadcast "&8[&d+&8]&7 Thank you, the color of room you are now in will be your hut for the remainder of the competition!"
+		loop all players:
+			if "%region at loop-player%" contains "pov1_yellow":
+				set {pov1_yellow.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_magenta":
+				set {pov1_magenta.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_orange":
+				set {pov1_orange.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_red":
+				set {pov1_red.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_cyan":
+				set {pov1_cyan.%player%} to true
+				stop
+			if "%region at loop-player%" contains "pov1_lime":
+				set {pov1_lime.%player%} to true
+				stop
+
+		# Explain the competition		
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 On my go you will run across the parkour, walk the plank, and then shoot your grappling gun at the jungle wall."
+		broadcast "&8[&d+&8]&7 You will then climb up the jungle wall and jump down the other side where there are a number of chests."
+		broadcast "&8[&d+&8]&7 It is your job to open a chest and get its contents before you fall down."
+		broadcast "&8[&d+&8]&7 What are you looking for? Your goal is to match the pattern that you see under your plank."
+		broadcast "&8[&d+&8]&7 For each correct match, you will get a point."
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 The player who gets the most matches, in the least amount of time wins the Power of Veto!"
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 You are only allowed to grapple when you are on your plank, or behind the red line attempting to grapple onto your gold block."
+		broadcast "&8[&d+&8]&7 If you fall off your plank, you will be sent back to the start and your inventory will be cleared!"
+		broadcast "&8[&d+&8]&7 If you fall into the water during the parkour, hit the buttons to return to your start. There is a chance that your button is a dud, so keep hitting buttons until you get back!"
+
+
+		# Understand? Then go.
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Does everyone understand?"
+
+		wait 5 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 That's great, because the competition begins &3now&7."
+		loop all players:
+			loop-player does not have permission "bb.admin"
+			execute console command "gms %loop-player%"
+		make player execute command "/rg select pov1_waiting"
+		make player execute command "//set 0"
+		set {pov.1.start} to true
+		set {pov1.competitiontimer} to now
+
+
+command /pov1results:
+	description: Sends the POV results to the admin who ran the comp.
+	usage: /pov1results
+	permission: bb.admin
+	trigger:
+		# So you know which order to deliver results.
+		loop all players:
+			set {pov1_score.%player%} to difference between {pov1.competitiontimer} and now
+			loop-player does not have permission "bb.admin"
+			send "&b%loop-player%&8:&6 %{pov1_score.%loop-player%}%" to command sender
+
+		# Set all the huts to air so that we can see boards.
+		make player execute command "/rg select pov1_yellow"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_magenta"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_orange"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_red"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_cyan"
+		make player execute command "//set 0"
+		make player execute command "/rg select pov1_lime"
+		make player execute command "//set 0"
+		broadcast "&8[&d+&8]&7 It's time to compare the results!"
+
+
+command /pov1end <text>:
+	description: Formally ends the HOH competition and declares the winner.
+	usage: /pov1end [Username]
+	permission: bb.admin
+	trigger:
+
+		# [Username] is the veto holder for the week, end of POV competition!
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Alright houseguests, &3I have tallied the scores&7."
+		broadcast "&8[&d+&8]&7 Congratulations &a%arg 1%&7, you have won the power of veto this week!"
+		broadcast "&8[&d+&8]&7 Good night, houseguests."
+		set {pov.1} to false
+		stop
+
+
+
+on enter of region "glassdoor":
+	if {pov.1} is true:
+		execute console command "warp pov1 %player%"
+		wait 0.25 irl seconds
+		execute console command "gh give %player% 100"
+		execute console command "gma %player%"
+
+
+on rightclick holding a fishing rod:
+	if {pov.1} is true:
+		if player is in region "pov1_grapplezone":
+			stop
+		else:
+			cancel the event
+			send "&8[&4X&8]&c You cannot grapple outside the grapple zone!" to player
+
+
+on enter of region "pov1_return_noenter":
+	if {pov.1} is true:
+		cancel the event
+		push the player .5 block behind
+		send "&8[&4X&8]&c You have to use your grappling hook here!" to player
+		
+
+on enter of region "pov1_no_enter":
+	if {pov.1} is true:
+		clear the player's inventory
+		wait 0.25 irl seconds
+		execute console command "gh give %player% 100"
+		if {pov1_yellow.%player%} is true:
+			execute console command "warp pov1yellow %player%"
+		if {pov1_magenta.%player%} is true:
+			execute console command "warp pov1magenta %player%"
+		if {pov1_orange.%player%} is true:
+			execute console command "warp pov1orange %player%"
+		if {pov1_red.%player%} is true:
+			execute console command "warp pov1red %player%"
+		if {pov1_cyan.%player%} is true:
+			execute console command "warp pov1cyan %player%"
+		if {pov1_lime.%player%} is true:
+			execute console command "warp pov1lime %player%"
+
+
+on right click on button:
+	player is in region "pov1_swamp"
+	if {pov.1} is true:
+		set clicked block to air
+		chance of 50%:
+			if {pov1_yellow.%player%} is true:
+				execute console command "warp pov1yellow %player%"
+				execute console command "/playsound random.orb %player%"
+				stop
+			if {pov1_magenta.%player%} is true:
+				execute console command "warp pov1magenta %player%"
+				execute console command "/playsound random.orb %player%"
+				stop
+			if {pov1_orange.%player%} is true:
+				execute console command "warp pov1orange %player%"
+				execute console command "/playsound random.orb %player%"
+				stop
+			if {pov1_red.%player%} is true:
+				execute console command "warp pov1red %player%"
+				execute console command "/playsound random.orb %player%"
+				stop
+			if {pov1_cyan.%player%} is true:
+				execute console command "warp pov1cyan %player%"
+				execute console command "/playsound random.orb %player%"
+				stop
+			if {pov1_lime.%player%} is true:
+				execute console command "warp pov1lime %player%"
+				execute console command "/playsound random.orb %player%"
+				stop
+		chance of 100%:
+			execute console command "/playsound random.break %player%"
+
+
+on right click on button:
+	if {pov.1} is true:
+		if {pov.1.start} is true:
+			player is in region "pov1_homestretch"
+			set {pov1scores.%player%}  to difference between {pov1.competitiontimer} and now
+			broadcast "&8[&6+&8]&3 %player% &7has just rang in and locked in his/her answers!"
+			set clicked block to air
+
+
+on right click on chest:
+	if {pov.1} is true:
+		if player is in region "pov1_nochests":
+			cancel the event
+			stop
+		else:
+			if difference between {pov1cooldown.%player%} and now is more than 20 seconds:
+				play ender signal at the targeted block to the player
+				set {blockloc.%player%} to location of clicked block
+				add inventory of block at {blockloc.%player%} to player's inventory
+				clear inventory of block
+				set block to air
+				set {pov1cooldown.%player%} to now
+				stop
+			else:
+				cancel the event
+				stop
+
+
+command /pov1state <text>:
+	trigger:
+		if arg 1 is "t":
+			set {pov.1} to true
+			send "&b{pov.1}&8:&6 true" to player
+			stop
+		if arg 1 is "f":
+			set {pov.1} to false
+			send "&b{pov.1}&8:&6 false" to player
+			stop

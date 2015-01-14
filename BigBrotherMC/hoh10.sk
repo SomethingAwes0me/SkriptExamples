@@ -1,0 +1,209 @@
+# SNOW_DIG_HOH ---- Scripts for the tenth head of household competition ---- #
+
+
+on enter of region "glassdoor":
+	if {hoh.10} is true:
+		execute console command "warp hoh10 %player%"
+		wait 0.25 irl seconds
+		execute console command "give %player% dspade 1"
+		execute console command "gma %player%"
+
+
+on right click on coal ore holding a diamond spade:
+	if {hoh.10} is true:
+		execute console command "give %player% coalingot 1"
+		set targeted block to air
+		send "&8[&5*&8]&a +1 &7point!"
+		add 1 to {hoh10score.%player%}
+		stop
+
+
+on right click on iron ore holding a diamond spade:
+	if {hoh.10} is true:
+		execute console command "give %player% ironingot 1"
+		set targeted block to air
+		send "&8[&5*&8]&a +2 &7points!"
+		add 2 to {hoh10score.%player%}
+		stop
+
+
+on right click on gold ore holding a diamond spade:
+	if {hoh.10} is true:
+		execute console command "give %player% goldingot 1"
+		set targeted block to air
+		send "&8[&5*&8]&a +3 &7points!" to player
+		add 3 to {hoh10score.%player%}
+		stop
+
+
+on right click on diamond ore holding a diamond spade:
+	if {hoh.10} is true:
+		chance of 20%:
+			spawn a tnt at the player's location
+			send "&8[&5*&8] &4BOMB!"
+			send "&8[&5*&8] &c-4 &7points!"
+			stop
+		execute console command "give %player% diamond 1"
+		set targeted block to air
+		send "&8[&5*&8]&a +4 &7points!"
+		add 4 to {hoh10score.%player%}
+		stop
+
+
+on right click on emerald ore holding a diamond spade:
+	if {hoh.10} is true:
+		chance of 30%:
+			spawn a tnt at the player's location
+			send "&8[&5*&8] &4BOMB!"
+			send "&8[&5*&8] &c-5 &7points!"
+			stop
+		execute console command "give %player% emerald 1"
+		set targeted block to air
+		send "&8[&5*&8]&a +5 &7points!"
+		add 5 to {hoh10score.%player%}
+		stop
+
+
+on damage:
+	if {hoh.10} is true:
+		attacker is TNT
+		cancel the event
+
+
+on pick up of snowball:
+	if {hoh.10} is true:
+		cancel the event
+
+
+command /hoh10:
+	description: Start the tenth HOH competition.
+	usage: /hoh10
+	permission: bigbrother.competitionstart
+	trigger:
+		set {hoh.10} to true
+		broadcast "&8[&d+&8]&3 Attention house guests! &7Please head to the &abackyard&7 to begin the tenth HOH competition!"
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 In this competition you will be doing a lot of digging so I hope you're prepared!"
+		wait 5 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 On my go you will have &31 minute&7 to dig through the snow pit that is in front of you."
+		broadcast "&8[&d+&8]&7 Randomly distributed throughout the snow pit are &3coal, iron, gold, diamond, and emerald ores&7."
+		broadcast "&8[&d+&8]&7 It is your job to dig through the snow as fast as possible and try to find as many ores as you can."
+		broadcast "&8[&d+&8]&7 When you find an ore right click it with your shovel to get its points."
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 There is one little twist though."
+		broadcast "&8[&d+&8]&7 Everytime you break a diamond or emerald ore make sure to watch your back."
+		broadcast "&8[&d+&8]&7 There's a small chance that it will be a fake and you will lose the respective point values and it will turn into TNT."
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 After &31 minute&7 the house guest with the most points becomes HOH for the week."
+		broadcast "&8[&5*&8]&a Coal is worth &61 point"
+		broadcast "&8[&5*&8]&a Iron is worth &62 points"
+		broadcast "&8[&5*&8]&a Gold is worth &63 points"
+		broadcast "&8[&5*&8]&a Diamond is worth &64 points"
+		broadcast "&8[&5*&8]&a Emerald is worth &65 points"
+
+		wait 10 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Does everyone understand?"
+
+		wait 5 irl seconds
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 That's great, because the competition begins &3now&7."
+		loop all players:
+			loop-player does not have permission "bb.admin"
+			execute console command "gms %loop-player%"
+
+
+		make player execute command "/rg select hoh10orangeL"
+		make player execute command "/rg f hoh10orange passthrough allow"
+		wait 1 tick
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh10magentaL"
+		make player execute command "/rg f hoh10magenta passthrough allow"
+		wait 1 tick
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh10yellowL"
+		make player execute command "/rg f hoh10yellow passthrough allow"
+		wait 1 tick
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh10greenL"
+		make player execute command "/rg f hoh10green passthrough allow"
+		wait 1 tick
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh10cyanL"
+		make player execute command "/rg f hoh10cyan passthrough allow"
+		wait 1 tick
+		make player execute command "//set 0"
+		make player execute command "/rg select hoh10redL"
+		make player execute command "/rg f hoh10red passthrough allow"
+		wait 1 tick
+		make player execute command "//set 0"
+
+
+		wait 60 irl seconds
+		make player execute command "/rg f hoh10orange passthrough deny"
+		make player execute command "/rg select hoh10orangeL"
+		wait 1 tick
+		make player execute command "//set 95"
+		make player execute command "//walls orangewool"
+		make player execute command "/rg f hoh10magenta passthrough deny"
+		make player execute command "/rg select hoh10magentaL"
+		wait 1 tick
+		make player execute command "//set 95"
+		make player execute command "//walls magentawool"
+		make player execute command "/rg f hoh10yellow passthrough deny"
+		make player execute command "/rg select hoh10yellowL"
+		wait 1 tick
+		make player execute command "//set 95"
+		make player execute command "//walls yellowwool"
+		make player execute command "/rg f hoh10green passthrough deny"
+		make player execute command "/rg select hoh10greenL"
+		wait 1 tick
+		make player execute command "//set 95"
+		make player execute command "//walls greenwool"
+		make player execute command "/rg f hoh10cyan passthrough deny"
+		make player execute command "/rg select hoh10cyanL"
+		wait 1 tick
+		make player execute command "//set 95"
+		make player execute command "//walls cyanwool"
+		make player execute command "/rg f hoh10red passthrough deny"
+		make player execute command "/rg select hoh10redL"
+		wait 1 tick
+		make player execute command "//set 95"
+		make player execute command "//walls redwool"
+
+
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Alright houseguests, &3time is up&7!"	
+		broadcast "&8[&d+&8]&7 I'll go tally the points."
+		stop
+
+
+
+command /hoh10results:
+	description: Sends the HOH results to each player and the admin who ran the comp.
+	usage: /hoh10results
+	permission: bb.admin
+	trigger:
+		loop all players:
+			loop-player does not have permission "bb.admin"
+			send "&8[&6!&8] &7Your score was &a%{hoh10score.%loop-player%}%&7!" to player
+			send "&b%loop-player%&8:&6 %{hoh10score.%loop-player%}%" to command sender
+
+
+command /hoh10end <text> <integer>:
+	description: Formally ends the HOH competition and declares the winner.
+	usage: /hoh1end [Username] [Points]
+	permission: bb.admin
+	trigger:
+		broadcast "&8---------------------------------------------------"
+		broadcast "&8[&d+&8]&7 Alright houseguests, &3I have tallied the scores&7."
+		broadcast "&8[&d+&8]&7 Congratulations &a%arg 1%&7, you are the HOH this week with a total score of &a%arg 2%&7!"
+		broadcast "&8[&d+&8]&7 Good night, houseguests."
+		set {hoh.10} to false
+		stop
