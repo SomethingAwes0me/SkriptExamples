@@ -1,5 +1,5 @@
 command /c <player> <text>:
-	permission: kdc.guard
+	permission: server.guard
 	trigger:
 		set {_timetodrop} to 5
 		set {contraband.%arg 1%} to true
@@ -46,12 +46,12 @@ on drop of dropweapons:
 
 on hunger level change:
 	player is not holding a steak or apple
-	player has permission "kdc.guard"
+	player has permission "server.guard"
 	chance of 50%:
 		cancel the event
 
 on death of a player:
-	player has permission "kdc.guard"
+	player has permission "server.guard"
 	loop drops:
 		add loop-item to {_drops::*}
 	delete drops
@@ -63,7 +63,7 @@ on death of a player:
 	give {_drops::*} to the victim
 
 on right click holding a gapple:
-	player has permission "kdc.guard"
+	player has permission "server.guard"
 	if player's health is 10:
 		stop
 	else:
