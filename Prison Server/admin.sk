@@ -19,17 +19,17 @@ command /chat <text>:
 
 on chat:
 	if {global.chat} is false:
-		player does not have permission "kdc.admin"
+		player does not have permission "server.admin"
 		cancel the event
 
 on first join:
 	if {global.chat} is true:
-		broadcast "&3%player%&7 has joined the new &6KDC&7 for the first time!"
+		broadcast "&3%player%&7 has joined the server for the first time!"
 		stop
 	if {global.chat} is false:
-		send "&3%player%&7 has joined the new &6KDC&7 for the first time!" to player
+		send "&3%player%&7 has joined the server for the first time!" to player
 		loop all players:
-			if loop-player has permission "kdc.admin":
+			if loop-player has permission "server.admin":
 				send "&c%loop-player% &8has joined for the first time."
 		stop
 
@@ -95,7 +95,7 @@ command /vcupdate <player> <number>:
 		set {vc.%arg 1%} to arg 2
 
 on sign change:
-	player does not have permission "kdc.admin"
+	player does not have permission "server.admin"
 	if first line is "&4[Buy Chest]" or "&4[Chest 1]" or "&4[Chest 2]" or "&4[Chest 3]" or "&4[Chest 4]" or "&4[Chest 5]" or "&4[Chest 6]" or "&4[Chest 7]" or "&4[Chest 8]" or "&4[Chest 9]" or "&4[Chest 10]" or "&4[Prestige]":
 		set first line to "&4Error!"
 		set third line to "You can't do that!"
